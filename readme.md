@@ -277,8 +277,8 @@ It is held in memory only, deliberately: writing it to disk would make a fresh l
 ## ⚡ Quick Start
 
 ```bash
-git clone https://github.com/FatihMakes/Mark-LIV.git
-cd Mark-LIV
+git clone https://github.com/001sudiptagain-lab/jarvis-clone-.git
+cd jarvis-clone-
 python setup.py        # installs deps for YOUR OS + the browser automation engine
 python main.py
 ```
@@ -306,18 +306,14 @@ python main.py
 ## 🗂️ Project Structure
 
 ```
-Mark LIV/
+jarvis-clone-/
 ├── main.py                   # Core loop — Gemini Live session, audio I/O, viseme extraction, tool dispatch
 ├── ui.py                     # PyQt6 HUD — avatar canvas, waveform, log panel, settings drawer, camera feed
 ├── setup.py                  # OS-aware installer (skips wrong-OS dependencies, checks your Python)
 ├── .gitignore                # Keeps your API key, TLS key and memories out of the repository
-├── plugins/
-│   ├── quiz.py               # Interactive quiz — ZYROX writes the questions, you answer on screen
-│   ├── document_review.py    # Contracts and policies in plain language, ordered by what matters
-│   ├── _google_core.py       # Shared OAuth for the Gmail/Calendar plugins (not a plugin itself)
-│   ├── _printer_core.py      # Shared printer connectivity (not a plugin itself)
-│   ├── _template.py          # Copy this to write a new plugin — one file, drop in, done
-│   └── ...                   # Drop-in skills (each self-describes via a PLUGIN dict + run())
+├── plugins/                  # Plugin package and starter template
+│   ├── __init__.py
+│   └── _template.py
 ├── actions/                  # Bundled skills — each self-describes via a TOOL dict + handler
 │   ├── web_search.py         # Gemini + DDG parallel search (news, research, price, compare)
 │   ├── screen_processor.py   # Screen & webcam capture for vision
@@ -344,6 +340,11 @@ Mark LIV/
 │   ├── config_manager.py     # api_keys.json access — key, OS, name, voice, colour, toggles
 │   └── long_term.json        # Persistent store — created on first run
 ├── core/
+│   ├── gemini.py             # Gemini Live connection support
+│   ├── llm_client.py         # Language-model client helpers
+│   ├── stt.py                # Speech-to-text support
+│   ├── tts.py                # Text-to-speech support
+│   ├── installer.py          # Optional component installer
 │   ├── prompt.txt            # All prompt wording — {tokens} are filled from the live system at startup
 │   ├── avatar.py             # Avatar renderer — lighting, pose, expression, mouth (QPainter)
 │   ├── avatar_mesh.py        # Head geometry — loads the face, generates skull/neck/rigs
@@ -357,9 +358,13 @@ Mark LIV/
 │   ├── plugin_loader.py      # Plugin engine — discovery, validation, crash isolation
 │   ├── action_loader.py      # Bundled-action engine — the built-in twin of plugin_loader
 │   └── wake_word.py          # Local "Hey Jarvis" detector — own thread, offline, opt-in
-└── config/
-    ├── api_keys.json         # API key, name, voice, colour, toggles — created on first launch (git-ignored)
-    └── certs/                # Self-signed TLS pair for the phone dashboard — generated locally (git-ignored)
+├── dashboard/
+│   ├── server.py             # Remote dashboard server
+│   └── static/               # Dashboard web interface
+├── config/
+│   ├── jarvis.png            # Application image
+│   └── jarvis.ico            # Windows application icon
+└── requirements.txt          # Python dependencies
 ```
 
 ---
@@ -395,12 +400,6 @@ Licensed under **[Creative Commons BY-NC 4.0](https://creativecommons.org/licens
 
 ---
 
-## 👤 Connect with the Creator
+## 👤 Repository
 
-Engineered by a developer building a real-world ZYROX-style assistant.
-⭐ **Star the repository to support the journey to Mark 100.**
-
-| Platform | Link |
-| --- | --- |
-| YouTube | [@FatihMakes](https://www.youtube.com/@FatihMakes) |
-| Instagram | [@fatihmakes](https://www.instagram.com/fatihmakes) |
+Maintained by [001sudiptagain-lab](https://github.com/001sudiptagain-lab). For bug reports and feature requests, visit [GitHub Issues](https://github.com/001sudiptagain-lab/jarvis-clone-/issues).
